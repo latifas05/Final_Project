@@ -66,5 +66,9 @@ The **Pet Adoption System** is a JavaFX-based application designed to facilitate
   
   Week 3: [Summary of Weekly Meetings.docx](https://github.com/user-attachments/files/18037979/Summary.of.Weekly.Meetings.docx)
 
+  ## Jar File:
+  [Final_Project-1.0-SNAPSHOT.zip](https://github.com/user-attachments/files/18048776/Final_Project-1.0-SNAPSHOT.zip)
 
+  ## Presentation:
+  
   
