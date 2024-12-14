@@ -59,6 +59,27 @@ The **Pet Adoption System** is a JavaFX-based application designed to facilitate
   ## UML Class Diagram:
   ![pet_adoption](https://github.com/user-attachments/assets/4394596a-0de7-490a-9b7b-c441e0e3f1c5)
 
+  ## Instructions for Use
+     **1. Installation:**
+  - Ensure Java and PostgreSQL are installed on your machine.
+  - Clone the repository from GitHub.
+  - Import the project into your preferred IDE (e.g., IntelliJ IDEA, Eclipse).
+     **2. Running the Application:**
+  - Open the main application class (HelloApplication) and run it.
+  - The GUI will appear, allowing users to manage pets and adopters.
+    **3. Using the Application:**
+  - Add Pet: Fill in the pet details and click **Add Pet.**
+  - Adopt Pet: Select a pet and fill in adopter details, then click **Adopt Pet.**
+  - View Adopters: Click the **View Adopters** button to see the list of adopters.
+    **4.Error Handling:**
+  - The application will display alerts for any errors (e.g., incomplete information).
+ 
+  ## Operation and Maintenance
+     **Database Deployment**
+  - Ensure PostgreSQL is running.
+  - Execute the SQL scripts to create tables and insert sample data.
+  - Verify the database connection settings in the Java application (URL, username, password).
+
   ## Weekly Meeting Documentation:
   Week 1: [Weekly Meeting Documentation - Week 1 (1).docx](https://github.com/user-attachments/files/18037969/Weekly.Meeting.Documentation.-.Week.1.1.docx)
   
