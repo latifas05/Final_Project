@@ -50,10 +50,10 @@ The **Pet Adoption System** is a JavaFX-based application designed to facilitate
 - **Adoption Records Table**: Stores records of adopted pets, including adopter information and adoption date.
  
   ## Screenshots:
-  ##Main page: ![image](https://github.com/user-attachments/assets/b0659411-9f48-4264-af7a-d29ed0899072)
-  ##Filter By Type: ![image](https://github.com/user-attachments/assets/c9b65658-0fb3-42a7-92ae-7ec6b8fef29f)
-  ##View Adopters: ![image](https://github.com/user-attachments/assets/99c2b5d6-e009-4679-b465-bd6c48ea0203)
-  ##Our DataBase Tables: ![image](https://github.com/user-attachments/assets/7a079163-1246-4e42-a7dc-8dbbe7d4a741)
+  **Main page:** ![image](https://github.com/user-attachments/assets/b0659411-9f48-4264-af7a-d29ed0899072)
+  **Filter By Type:** ![image](https://github.com/user-attachments/assets/c9b65658-0fb3-42a7-92ae-7ec6b8fef29f)
+  **View Adopters:** ![image](https://github.com/user-attachments/assets/99c2b5d6-e009-4679-b465-bd6c48ea0203)
+  **Our DataBase Tables:** ![image](https://github.com/user-attachments/assets/7a079163-1246-4e42-a7dc-8dbbe7d4a741)
 
 
   ## UML Class Diagram:
