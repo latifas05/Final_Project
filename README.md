@@ -47,7 +47,61 @@ The **Pet Adoption System** is a JavaFX-based application designed to facilitate
 - **Pets Table**: Stores data related to pets available for adoption, including pet ID, name, breed, and type.
 - **Adopters Table**: Stores data related to adopters, such as name, contact details, and adoption history.
 - **Adoption Records Table**: Stores records of adopted pets, including adopter information and adoption date.
- 
+
+
+  ## SQL Queries for Database Operations
+
+  ### 1. **Create Tables:**
+
+  The following SQL queries create the necessary tables for storing data about pets, adopters, and adoption records.
+
+```sql
+-- Creating the Pets Table
+CREATE TABLE pets (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(50) NOT NULL,
+    type VARCHAR(10) NOT NULL,
+    age INT NOT NULL,
+    description TEXT,
+    breed VARCHAR(50),
+    is_adopted BOOLEAN DEFAULT FALSE
+);
+
+-- Creating the Adopters Table
+CREATE TABLE adopters (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    contact VARCHAR(100) NOT NULL
+);
+
+-- Creating the Adoption Records Table
+CREATE TABLE adoption_records (
+    id SERIAL PRIMARY KEY,
+    adopter_id INT REFERENCES adopters(id),
+    pet_id INT REFERENCES pets(id),
+    adoption_date DATE DEFAULT CURRENT_DATE, 
+    adopter_name VARCHAR(255),
+    pet_name VARCHAR(255),
+    adopter_contact VARCHAR(255),
+    pet_type VARCHAR(255)
+);
+```
+  ## Insert Sample Data:
+  ```sql
+  -- Inserting data into the Pets Table
+INSERT INTO pets (name, type, age, description, breed) VALUES
+('Bella', 'Dog', 2, 'Friendly and playful', 'Labrador'),
+('Luna', 'Cat', 1, 'Calm and affectionate', 'Persian'),
+('Max', 'Dog', 3, 'Energetic and friendly', 'Golden Retriever'),
+('Chirpy', 'Bird', 1, 'Loves to sing', 'Canary'),
+('Fluffy', 'Rabbit', 2, 'Cute and cuddly', 'Angora'),
+('Zeus', 'Dog', 4, 'Loyal and protective', 'German Shepherd'),
+('Shadow', 'Cat', 5, 'Independent and mysterious', 'Siamese'),
+('Sunny', 'Bird', 2, 'Loves flying around', 'Parrot'),
+('Rocky', 'Hamster', 1, 'Small and quick', 'Syrian'),
+('Peanut', 'Bird', 1, 'Curious and playful', 'Budgie');
+```
+
   ## Screenshots:
   **Main page:** ![image](https://github.com/user-attachments/assets/b0659411-9f48-4264-af7a-d29ed0899072)
   **Filter By Type:** ![image](https://github.com/user-attachments/assets/c9b65658-0fb3-42a7-92ae-7ec6b8fef29f)
@@ -61,7 +115,7 @@ The **Pet Adoption System** is a JavaFX-based application designed to facilitate
   ![pet_adoption](https://github.com/user-attachments/assets/4394596a-0de7-490a-9b7b-c441e0e3f1c5)
   
   ## Instructions for Use
-     **1. Installation:**
+  **Installation**
   - Ensure Java and PostgreSQL are installed on your machine.
   - Clone the repository from GitHub.
   - Import the project into your preferred IDE (e.g., IntelliJ IDEA, Eclipse).
@@ -76,7 +130,7 @@ The **Pet Adoption System** is a JavaFX-based application designed to facilitate
   - The application will display alerts for any errors (e.g., incomplete information).
  
   ## Operation and Maintenance
-     **Database Deployment**
+  **Database Deployment**
   - Ensure PostgreSQL is running.
   - Execute the SQL scripts to create tables and insert sample data.
   - Verify the database connection settings in the Java application (URL, username, password).
