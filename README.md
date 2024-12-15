@@ -40,9 +40,6 @@ The **Pet Adoption System** is a JavaFX-based application designed to facilitate
   - `hello-view.fxml`: The FXML file for the pet management view.
   - `adopters-view.fxml`: The FXML file for managing adopter information.
  
-  - **Dialogs**:
-  - `PetDialog`: Used to handle the addition or editing of pet details.
- 
   ## Database:
   The **Pet Adoption System** uses **PostgreSQL** as the database to store the following information:
 - **Pets Table**: Stores data related to pets available for adoption, including pet ID, name, breed, and type.
