@@ -17,9 +17,6 @@ The **Pet Adoption System** is a JavaFX-based application designed to facilitate
 9. Store data persistently using DAO (Data Access Object) design pattern.
 10. Allow users to view a history of all adoption transactions.
 
-## Team Members List:
-- **Latifa Salyeva** -  Responsible for implementing core functionalities and integrating the DAO layer.
-- **Saadat Nurbekova** - Responsible for designing the user interface and ensuring the application is user-friendly.
 
 ## Project Structure:
 - **Model**:
