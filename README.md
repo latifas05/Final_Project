@@ -91,5 +91,6 @@ The **Pet Adoption System** is a JavaFX-based application designed to facilitate
   [Final_Project-1.0-SNAPSHOT.zip](https://github.com/user-attachments/files/18048776/Final_Project-1.0-SNAPSHOT.zip)
 
   ## Presentation:
-  
+  [Pet Adoption System Ppt.pdf](https://github.com/user-attachments/files/18139595/Pet.Adoption.System.Ppt.pdf)
+
   
