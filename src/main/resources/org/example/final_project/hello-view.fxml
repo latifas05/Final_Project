@@ -1,16 +1,60 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.VBox?>
-
 <?import javafx.scene.control.Button?>
-<VBox alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml"
-      fx:controller="org.example.final_project.HelloController">
-  <padding>
-    <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
-  </padding>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.TextFlow?>
 
-  <Label fx:id="welcomeText"/>
-  <Button text="Hello!" onAction="#onHelloButtonClick"/>
-</VBox>
+<AnchorPane prefHeight="826.0" prefWidth="1600.0" style="-fx-background-color: #DED9E2;" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.final_project.HelloController">
+    <TextFlow prefHeight="75.0" prefWidth="806.0" style="-fx-background-color: #C0B9DD;" textAlignment="CENTER" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <Label alignment="CENTER" contentDisplay="CENTER" style="-fx-font-size: 36px; -fx-font-weight: bold; -fx-text-fill: #000000;" text="Pet Adoption System" textAlignment="CENTER">
+            <opaqueInsets>
+                <Insets />
+            </opaqueInsets></Label>
+    </TextFlow>
+    <ComboBox fx:id="typeFilterComboBox" layoutX="1276.8" layoutY="133.0" prefHeight="27.0" prefWidth="279.0" promptText="Filter by Type" style="-fx-background-color: #e6e6e6; -fx-border-color: #ccc;" AnchorPane.leftAnchor="1277.0" AnchorPane.rightAnchor="44.0" AnchorPane.topAnchor="133.0" />
+
+    <Label layoutX="271.0" layoutY="133.0" style="-fx-font-size: 18px; -fx-font-weight: bold;" text="Available Pets" AnchorPane.leftAnchor="271.0" AnchorPane.topAnchor="133.0" />
+    <TableView fx:id="petsTableView" layoutX="271.0" layoutY="164.0" prefHeight="199.0" prefWidth="491.0" style="-fx-border-color: #ddd; -fx-border-radius: 5px;" AnchorPane.leftAnchor="271.0" AnchorPane.rightAnchor="44.0" AnchorPane.topAnchor="164.0">
+        <columns>
+            <TableColumn fx:id="idColumn" text="ID" />
+            <TableColumn fx:id="nameColumn" text="Name" />
+            <TableColumn fx:id="breedColumn" text="Breed" />
+            <TableColumn fx:id="typeColumn" text="Type" />
+            <TableColumn fx:id="ageColumn" text="Age" />
+            <TableColumn fx:id="descriptionColumn" text="Description" />
+        </columns>
+    </TableView>
+
+    <Button layoutX="275.0" layoutY="374.0" onAction="#showAddPetDialog" style="-fx-background-color: #938aba; -fx-text-fill: white;" text="Add Pet" AnchorPane.leftAnchor="275.0" AnchorPane.topAnchor="374.0" />
+    <Button layoutX="352.0" layoutY="374.0" onAction="#deleteButton" style="-fx-background-color: #17a2b8; -fx-text-fill: white;" text="Delete" AnchorPane.leftAnchor="352.0" AnchorPane.topAnchor="374.0" />
+
+    <Label layoutX="46.0" layoutY="302.0" style="-fx-font-size: 18px; -fx-font-weight: bold;" text="Adopter Details" AnchorPane.leftAnchor="46.0" AnchorPane.topAnchor="302.0" />
+    <ComboBox fx:id="adopterIdComboBox" layoutX="46.0" layoutY="334.0" prefWidth="180.0" promptText="Select Adopter ID" style="-fx-background-color: #f8f9fa;" AnchorPane.leftAnchor="46.0" AnchorPane.topAnchor="334.0" />
+    <TextField fx:id="adopterNameField" layoutX="46.0" layoutY="374.0" prefWidth="180.0" promptText="Name" style="-fx-background-color: #f8f9fa;" AnchorPane.leftAnchor="46.0" AnchorPane.topAnchor="374.0" />
+    <TextField fx:id="adopterContactField" layoutX="46.0" layoutY="414.0" prefWidth="180.0" promptText="Contact Info" style="-fx-background-color: #f8f9fa;" AnchorPane.leftAnchor="46.0" AnchorPane.topAnchor="414.0" />
+    <Button layoutX="46.0" layoutY="454.0" onAction="#handleAdoption" style="-fx-background-color: #938aba; -fx-text-fill: white;" text="Adopt Pet" AnchorPane.leftAnchor="46.0" AnchorPane.topAnchor="454.0" />
+
+    <Label layoutX="46.0" layoutY="146.0" style="-fx-font-size: 18px; -fx-font-weight: bold;" text="Add Adopter" AnchorPane.leftAnchor="46.0" AnchorPane.topAnchor="146.0" />
+    <TextField fx:id="addAdopterNameField" layoutX="46.0" layoutY="178.0" prefWidth="180.0" promptText="Adopter Name" style="-fx-background-color: #f8f9fa;" AnchorPane.leftAnchor="46.0" AnchorPane.topAnchor="178.0" />
+    <TextField fx:id="addAdopterContactField" layoutX="46.0" layoutY="218.0" prefWidth="180.0" promptText="Adopter Contact Info" style="-fx-background-color: #f8f9fa;" AnchorPane.leftAnchor="46.0" AnchorPane.topAnchor="218.0" />
+    <Button layoutX="46.0" layoutY="258.0" onAction="#addAdopter" style="-fx-background-color: #938aba; -fx-text-fill: white;" text="Add Adopter" AnchorPane.leftAnchor="46.0" AnchorPane.topAnchor="258.0" />
+    <Button fx:id="viewAdoptersButton" layoutX="271.0" layoutY="681.0" onAction="#handleViewAdopters" style="-fx-background-color: #17a2b8; -fx-text-fill: white;" text="View Adopters" AnchorPane.leftAnchor="271.0" AnchorPane.topAnchor="681.0" />
+
+    <Label layoutX="271.0" layoutY="424.0" style="-fx-font-size: 18px; -fx-font-weight: bold;" text="Adoption Records" AnchorPane.leftAnchor="271.0" AnchorPane.topAnchor="424.0" />
+    <TableView fx:id="adoptionRecordsTableView" layoutX="271.0" layoutY="456.0" prefHeight="211.0" prefWidth="491.0" style="-fx-border-color: #ddd; -fx-border-radius: 5px;" AnchorPane.leftAnchor="271.0" AnchorPane.rightAnchor="44.200000000000045" AnchorPane.topAnchor="456.0">
+        <columns>
+            <TableColumn fx:id="adoptionIdColumn" text="Adoption ID" />
+            <TableColumn fx:id="adopterNameColumn" text="Adopter Name" />
+            <TableColumn fx:id="petNameColumn" text="Pet Name" />
+            <TableColumn fx:id="petTypeColumn" text="Pet Type" />
+            <TableColumn fx:id="adoptionDateColumn" text="Adoption Date" />
+            <TableColumn fx:id="adopterContactColumn" text="Adopter Contact" />
+        </columns>
+    </TableView>
+</AnchorPane>

@@ -1,4 +1,4 @@
-package org.example.final_project;
+package org.example.final_project.Model;
 
 import java.time.LocalDate;
 import javafx.beans.property.IntegerProperty;

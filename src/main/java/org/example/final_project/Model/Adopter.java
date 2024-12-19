@@ -1,19 +1,16 @@
-package org.example.final_project;
+package org.example.final_project.Model;
 
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
-public class Adopter {
-    private final IntegerProperty id;
-    private final StringProperty name;
-    private final StringProperty contact;
+public class Adopter extends Person {
+    private final IntegerProperty id; // Use IntegerProperty for JavaFX binding
 
     public Adopter(int id, String name, String contact) {
-        this.id = new SimpleIntegerProperty(id);
-        this.name = new SimpleStringProperty(name);
-        this.contact = new SimpleStringProperty(contact);
+        super(id, name, contact); // Call the Person constructor with id, name, and contact
+        this.id = new SimpleIntegerProperty(id); // Initialize the id property
     }
 
     public int getId() {
@@ -25,19 +22,19 @@ public class Adopter {
     }
 
     public String getName() {
-        return (String)this.name.get();
-    }
-
-    public StringProperty nameProperty() {
-        return this.name;
+        return super.getName(); // Call the getName method from Person
     }
 
     public String getContact() {
-        return (String)this.contact.get();
+        return super.getContact(); // Call the getContact method from Person
+    }
+
+    // Add property methods for JavaFX bindings if needed
+    public StringProperty nameProperty() {
+        return new SimpleStringProperty(getName());
     }
 
     public StringProperty contactProperty() {
-        return this.contact;
+        return new SimpleStringProperty(getContact());
     }
 }
-

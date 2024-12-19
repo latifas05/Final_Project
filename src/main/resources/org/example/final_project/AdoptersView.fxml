@@ -1,14 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="$CONTROLLER_NAME$"
-            prefHeight="400.0" prefWidth="600.0" >
-
+<AnchorPane prefHeight="826.0" prefWidth="1600.0" style="-fx-background-color: #DED9E2;" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.final_project.AdoptersController">
+    <children>
+        <TableView fx:id="adoptersTableView" prefHeight="542.0" prefWidth="888.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <columns>
+                <TableColumn fx:id="idColumn" prefWidth="100" text="ID" />
+                <TableColumn fx:id="nameColumn" prefWidth="300" text="Name" />
+                <TableColumn fx:id="contactColumn" prefWidth="200" text="Contact" />
+            </columns>
+        </TableView>
+        <Button fx:id="goToHomeButton" layoutX="14.0" layoutY="570.0" onAction="#handleGoToHome" style="-fx-background-color: #17a2b8; -fx-text-fill: white;" text="Go to Home" />
+    </children>
 </AnchorPane>

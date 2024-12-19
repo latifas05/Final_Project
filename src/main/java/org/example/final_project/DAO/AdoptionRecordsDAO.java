@@ -1,4 +1,6 @@
-package org.example.final_project;
+package org.example.final_project.DAO;
+
+import org.example.final_project.Model.AdoptionRecord;
 
 import java.sql.Connection;
 import java.sql.Date;
@@ -23,132 +25,77 @@ public class AdoptionRecordsDAO {
     }
 
     public static List<AdoptionRecord> getAllRecords() {
-        List<AdoptionRecord> records = new ArrayList();
-        String sql = "SELECT ar.id AS adoption_id, ar.adopter_id, ar.pet_id, a.name AS adopter_name, a.contact AS adopter_contact, p.name AS pet_name, p.type AS pet_type, ar.adoption_date FROM adoption_records ar JOIN adopters a ON ar.adopter_id = a.id JOIN pets p ON ar.pet_id = p.id";
+        List<AdoptionRecord> records = new ArrayList<>();
+        String sql = "SELECT ar.id AS adoption_id, ar.adopter_id, ar.pet_id, a.name AS adopter_name, a.contact AS adopter_contact, p.name AS pet_name, p.type AS pet_type, ar.adoption_date " +
+                "FROM adoption_records ar " +
+                "JOIN adopters a ON ar.adopter_id = a.id " +
+                "JOIN pets p ON ar.pet_id = p.id " +
+                "ORDER BY ar.id ASC";
 
-        try {
-            Connection conn = connect();
+        try (Connection conn = connect();
+             Statement stmt = conn.createStatement();
+             ResultSet rs = stmt.executeQuery(sql)) {
 
-            try {
-                Statement stmt = conn.createStatement();
-
-                try {
-                    ResultSet rs = stmt.executeQuery(sql);
-
-                    try {
-                        while(rs.next()) {
-                            records.add(new AdoptionRecord(rs.getInt("adoption_id"), rs.getInt("adopter_id"), rs.getInt("pet_id"), rs.getString("adopter_name"), rs.getString("adopter_contact"), rs.getString("pet_name"), rs.getString("pet_type"), rs.getDate("adoption_date").toLocalDate()));
-                        }
-                    } catch (Throwable var10) {
-                        if (rs != null) {
-                            try {
-                                rs.close();
-                            } catch (Throwable var9) {
-                                var10.addSuppressed(var9);
-                            }
-                        }
-
-                        throw var10;
-                    }
-
-                    if (rs != null) {
-                        rs.close();
-                    }
-                } catch (Throwable var11) {
-                    if (stmt != null) {
-                        try {
-                            stmt.close();
-                        } catch (Throwable var8) {
-                            var11.addSuppressed(var8);
-                        }
-                    }
-
-                    throw var11;
-                }
-
-                if (stmt != null) {
-                    stmt.close();
-                }
-            } catch (Throwable var12) {
-                if (conn != null) {
-                    try {
-                        conn.close();
-                    } catch (Throwable var7) {
-                        var12.addSuppressed(var7);
-                    }
-                }
-
-                throw var12;
+            while (rs.next()) {
+                records.add(new AdoptionRecord(
+                        rs.getInt("adoption_id"),
+                        rs.getInt("adopter_id"),
+                        rs.getInt("pet_id"),
+                        rs.getString("adopter_name"),
+                        rs.getString("adopter_contact"),
+                        rs.getString("pet_name"),
+                        rs.getString("pet_type"),
+                        rs.getDate("adoption_date").toLocalDate()
+                ));
             }
 
-            if (conn != null) {
-                conn.close();
-            }
-        } catch (SQLException var13) {
-            SQLException e = var13;
+        } catch (SQLException e) {
             e.printStackTrace();
         }
 
         return records;
     }
 
+
     public void addAdoptionRecord(AdoptionRecord record) {
         if (!this.doesAdopterExist(record.getAdopterId())) {
             System.out.println("Adopter with ID " + record.getAdopterId() + " does not exist.");
-        } else {
-            String sql = "INSERT INTO adoption_records (adopter_id, pet_id, adopter_name, adopter_contact, pet_name, pet_type, adoption_date) VALUES (?, ?, ?, ?, ?, ?, ?)";
+            return;
+        }
 
-            try {
-                Connection conn = connect();
+        String insertAdoptionSql = "INSERT INTO adoption_records (adopter_id, pet_id, adopter_name, adopter_contact, pet_name, pet_type, adoption_date) VALUES (?, ?, ?, ?, ?, ?, ?)";
+        String updatePetStatusSql = "UPDATE pets SET is_adopted = TRUE WHERE id = ?";
 
-                try {
-                    PreparedStatement pstmt = conn.prepareStatement(sql);
+        try (Connection conn = connect()) {
+            conn.setAutoCommit(false);
 
-                    try {
-                        pstmt.setInt(1, record.getAdopterId());
-                        pstmt.setInt(2, record.getPetId());
-                        pstmt.setString(3, record.getAdopterName());
-                        pstmt.setString(4, record.getAdopterContact());
-                        pstmt.setString(5, record.getPetName());
-                        pstmt.setString(6, record.getPetType());
-                        pstmt.setDate(7, Date.valueOf(record.getAdoptionDate()));
-                        pstmt.executeUpdate();
-                    } catch (Throwable var9) {
-                        if (pstmt != null) {
-                            try {
-                                pstmt.close();
-                            } catch (Throwable var8) {
-                                var9.addSuppressed(var8);
-                            }
-                        }
+            try (PreparedStatement pstmt = conn.prepareStatement(insertAdoptionSql);
+                 PreparedStatement updatePstmt = conn.prepareStatement(updatePetStatusSql)) {
 
-                        throw var9;
-                    }
+                pstmt.setInt(1, record.getAdopterId());
+                pstmt.setInt(2, record.getPetId());
+                pstmt.setString(3, record.getAdopterName());
+                pstmt.setString(4, record.getAdopterContact());
+                pstmt.setString(5, record.getPetName());
+                pstmt.setString(6, record.getPetType());
+                pstmt.setDate(7, Date.valueOf(record.getAdoptionDate()));
+                pstmt.executeUpdate();
 
-                    if (pstmt != null) {
-                        pstmt.close();
-                    }
-                } catch (Throwable var10) {
-                    if (conn != null) {
-                        try {
-                            conn.close();
-                        } catch (Throwable var7) {
-                            var10.addSuppressed(var7);
-                        }
-                    }
+                // Set values for updating pet adoption status
+                updatePstmt.setInt(1, record.getPetId());
+                updatePstmt.executeUpdate();
 
-                    throw var10;
-                }
-
-                if (conn != null) {
-                    conn.close();
-                }
-            } catch (SQLException var11) {
-                SQLException e = var11;
+                conn.commit();
+            } catch (SQLException e) {
+                conn.rollback();
+                System.out.println("Transaction failed, rollback initiated.");
                 e.printStackTrace();
             }
-
+        } catch (SQLException e) {
+            System.out.println("Error connecting to the database.");
+            e.printStackTrace();
         }
+
     }
 
     private boolean doesAdopterExist(int adopterId) {
